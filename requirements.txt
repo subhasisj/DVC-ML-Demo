@@ -1,3 +1,6 @@
 pandas
 dvc
 sklearn
+
+# local packages -
+-e .
