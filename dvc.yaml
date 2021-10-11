@@ -1,4 +1,6 @@
 stages:
+  always_run: 
+    cmd: python src/test.py
   load_data:
     cmd: python src/stage-01-load-save.py --config=config/config.yaml
     deps:
@@ -7,3 +9,16 @@ stages:
       - config/config.yaml
     outs:
       - artifacts/raw_local_dir/data.csv
+
+  split_data:
+    cmd: python src/stage-02-split-data.py -c=config/config.yaml -p=params.yaml
+    deps:
+      - src/stage-02-split-data.py
+      - src/utils/utils.py
+      - config/config.yaml
+    params:
+      - base.random_state
+      - base.test_size
+    outs:
+      - artifacts/split_data_dir/train.csv
+      - artifacts/split_data_dir/test.csv
