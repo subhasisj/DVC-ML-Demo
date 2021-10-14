@@ -16,9 +16,23 @@ stages:
       - src/stage-02-split-data.py
       - src/utils/utils.py
       - config/config.yaml
+      - artifacts/raw_local_dir/data.csv
     params:
       - base.random_state
       - base.test_size
     outs:
       - artifacts/split_data_dir/train.csv
       - artifacts/split_data_dir/test.csv
+
+  training:
+    cmd: python src/stage-03-training.py -c=config/config.yaml -p=params.yaml
+    deps:
+      - src/stage-03-training.py
+      - src/utils/utils.py
+      - config/config.yaml
+      - artifacts/split_data_dir/train.csv
+    params:
+      - base.random_state
+      - model_params.RandomForestRegressor.hyper_params
+    outs:
+      - artifacts/models/randomforest.model

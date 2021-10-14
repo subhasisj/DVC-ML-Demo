@@ -8,5 +8,8 @@ artifacts:
   split_data_dir: split_data_dir
   train_file: train.csv
   test_file: test.csv
+
+  model_dir: models
+  model_save_file_name: randomforest.model
   
   
