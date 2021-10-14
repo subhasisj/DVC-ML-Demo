@@ -12,4 +12,6 @@ artifacts:
   model_dir: models
   model_save_file_name: randomforest.model
   
+  eval_metrics: metrics
+  metrics_file: metrics.json
   
