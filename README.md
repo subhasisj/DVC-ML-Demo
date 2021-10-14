@@ -2,4 +2,5 @@
 
 
 ```bash
+dvc repro
 ```
