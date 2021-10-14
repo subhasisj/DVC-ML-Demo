@@ -4,14 +4,14 @@ stages:
     cmd: python src/stage-01-load-save.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: bd54eb918f8de56f51eaa5a3fc077556
-      size: 364
+      md5: cdb1cf22723b351ac2b3d6a142a20d43
+      size: 419
     - path: src/stage-01-load-save.py
       md5: 1a6ab0adc5913a5ffd786d4c7e8cc56f
       size: 872
     - path: src/utils/utils.py
-      md5: f44fae73c52c339e02c63bfcd34a2007
-      size: 540
+      md5: 98a857312ec0000ad298e5c294adbae3
+      size: 742
     outs:
     - path: artifacts/raw_local_dir/data.csv
       md5: 7d814a1bda02145efe703f4e1c01847a
@@ -25,14 +25,14 @@ stages:
       md5: 7d814a1bda02145efe703f4e1c01847a
       size: 93599
     - path: config/config.yaml
-      md5: bd54eb918f8de56f51eaa5a3fc077556
-      size: 364
+      md5: cdb1cf22723b351ac2b3d6a142a20d43
+      size: 419
     - path: src/stage-02-split-data.py
       md5: 13e1576676e46bccd73767fec86ea599
       size: 1738
     - path: src/utils/utils.py
-      md5: f44fae73c52c339e02c63bfcd34a2007
-      size: 540
+      md5: 98a857312ec0000ad298e5c294adbae3
+      size: 742
     params:
       params.yaml:
         base.random_state: 42
@@ -51,14 +51,14 @@ stages:
       md5: 5e5a3523f0fba3925dc577c3baf2c5cd
       size: 65577
     - path: config/config.yaml
-      md5: bd54eb918f8de56f51eaa5a3fc077556
-      size: 364
+      md5: cdb1cf22723b351ac2b3d6a142a20d43
+      size: 419
     - path: src/stage-03-training.py
       md5: 3a05f05cb0cb0de603f9ef77130157f6
       size: 2107
     - path: src/utils/utils.py
-      md5: f44fae73c52c339e02c63bfcd34a2007
-      size: 540
+      md5: 98a857312ec0000ad298e5c294adbae3
+      size: 742
     params:
       params.yaml:
         base.random_state: 42
@@ -70,3 +70,25 @@ stages:
     - path: artifacts/models/randomforest.model
       md5: d518f39285f3b91e33877fd919080235
       size: 1791357
+  eval:
+    cmd: python src/stage-04-evaluate.py -c=config/config.yaml -p=params.yaml
+    deps:
+    - path: artifacts/models/randomforest.model
+      md5: d518f39285f3b91e33877fd919080235
+      size: 1791357
+    - path: artifacts/split_data_dir/test.csv
+      md5: 3a3eef9f920deae72cb9bcd7b91231f1
+      size: 28169
+    - path: config/config.yaml
+      md5: cdb1cf22723b351ac2b3d6a142a20d43
+      size: 419
+    - path: src/stage-04-evaluate.py
+      md5: 4d6a7d3eb599c8b9b7f2d01cd10989e8
+      size: 2226
+    - path: src/utils/utils.py
+      md5: 98a857312ec0000ad298e5c294adbae3
+      size: 742
+    outs:
+    - path: artifacts/metrics/metrics.json
+      md5: f21e18a16e35a0cdb3c3a7228028182a
+      size: 132

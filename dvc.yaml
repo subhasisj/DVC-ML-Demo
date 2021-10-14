@@ -36,3 +36,14 @@ stages:
       - model_params.RandomForestRegressor.hyper_params
     outs:
       - artifacts/models/randomforest.model
+
+  eval:
+    cmd: python src/stage-04-evaluate.py -c=config/config.yaml -p=params.yaml
+    deps:
+      - src/stage-04-evaluate.py
+      - src/utils/utils.py
+      - config/config.yaml
+      - artifacts/split_data_dir/test.csv
+      - artifacts/models/randomforest.model
+    outs:
+      - artifacts/metrics/metrics.json
