@@ -5,7 +5,7 @@ import os
 from sklearn.model_selection import train_test_split
 
 
-def get_data(path_to_config, path_to_params):
+def split_data_save(path_to_config, path_to_params):
     config = read_yaml(path_to_config)
     params = read_yaml(path_to_params)
 
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     args.add_argument("--params", "-p", default="params.yaml")
     parsed_args = args.parse_args()
 
-    get_data(parsed_args.config, parsed_args.params)
+    split_data_save(parsed_args.config, parsed_args.params)

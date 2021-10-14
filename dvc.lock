@@ -25,8 +25,8 @@ stages:
       md5: a594792080da5480e92076744b4cb3c4
       size: 297
     - path: src/stage-02-split-data.py
-      md5: 4623618c3ed3c031ab95dd2bc4d2f37f
-      size: 1724
+      md5: 13e1576676e46bccd73767fec86ea599
+      size: 1738
     - path: src/utils/utils.py
       md5: 0920a8c6fa063d78ffd9c6471c432310
       size: 534
